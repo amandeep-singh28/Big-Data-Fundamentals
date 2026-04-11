@@ -144,3 +144,21 @@ It will change only Group
 chown:- Full control over user and group
 chgrp:- Control over only group
 
+(xxi)File exist or not(-test -e)
+-0: Exists
+-1: Does not exist
+-echo $?: It shows the exit status of the last executed command
+
+hdfs dfs -test -e /university/students/info.txt
+echo $?
+
+(xxii)Directory exist or not(-test -d)
+-hdfs dfs -test -d /university
+-hdfs dfs -test -e /university
+Both will return 0(Exists)
+
+They will differ, if the path is not a directory
+-hdfs dfs -test -d /university/students/info.txt (Path is file -> It will return 1)
+-hdfs dfs -test -e /university/students/info.txt (Return false)
+
+
