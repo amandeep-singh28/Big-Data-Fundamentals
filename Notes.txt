@@ -68,3 +68,12 @@ Using put command you can upload files from local system to HDFS
 -echo "Data file 2" > file2.txt
 -hdfs dfs -put file1.txt file2.txt /university/data
 
+(viii)Copy File in HDFS
+-hdfs dfs -cp /university/students/info.txt /university/faculty
+
+cp = duplicate
+
+(ix)Move File in HDFS (It moves file form one location to another, File is removed from the source)
+-hdfs dfs -mv /university/students/info.txt /university/data
+
+mv = cut + paste
