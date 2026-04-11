@@ -60,3 +60,11 @@ Firstly we need to create a file in our local system.
 
 Using put command you can upload files from local system to HDFS
 
+(vi)Read File from HDFS
+-hdfs dfs -cat /university/students/info.txt
+
+(vii)Uploading multiple files
+-echo "Data file 1" > file1.txt
+-echo "Data file 2" > file2.txt
+-hdfs dfs -put file1.txt file2.txt /university/data
+
