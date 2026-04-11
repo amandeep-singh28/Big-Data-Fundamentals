@@ -131,3 +131,16 @@ DIR_COUNT, FILE_COUNT, CONTENT_SIZE PATH
 
 -hdfs dfs -chmod 755 /university/students/info.txt
 
+(xix)Owner and Group Change(chown)
+-hdfs dfs -chown amandeep:group1 /university/students/info.txt (It will change name and group)
+-hdfs dfs -chown amandeepsingh /university/students/info.txt (It will change only name)
+-hdfs dfs -chown :Gamer_Group /university/students/info.txt (It will change only group)
+
+(xx)Only Group Change(chgrp)
+-hdfs dfs -chgrp Study_Group /university/students/info.txt
+
+It will change only Group
+
+chown:- Full control over user and group
+chgrp:- Control over only group
+
