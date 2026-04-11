@@ -15,3 +15,22 @@ Components:-
 NameNode -> Brain (Metadata -> Data about data)
 DataNode -> It stores actual data
 
+
+****Practical Implementation****
+
+(i)JPS
+It checks whether hadoop is working or not
+It prints:
+NameNode
+DataNode
+SecondaryNameNode
+ResorceManager
+NodeManager
+
+But before this, we have to start the hadoop services using:-
+start-all.sh (It starts all of the services)
+
+Manually you can type:-
+start-dfs.sh -> Hadoop Services
+start-yarn.sh -> YARN Services
+
