@@ -50,3 +50,13 @@ hdfs dfs -mkdir /university1/data /university2 (Notes- Both directories are not 
 But /university2 -> It will be created
 
 
+(v)Uploading file to HDFS(put command)
+Firstly we need to create a file in our local system.
+-touch info.txt
+-echo "Name:Amandeep Singh, Course:BTech, Subject:Hadoop" > info.txt
+-cat info.txt
+
+-hdfs dfs -put info.txt /university/students
+
+Using put command you can upload files from local system to HDFS
+
