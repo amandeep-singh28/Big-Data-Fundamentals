@@ -7,3 +7,11 @@ For example:-
 1 CPU -> Slow
 3 CPUs -> Split work and can work fast
 
+****What is HDFS(Important)****
+HDFS -> Hadoop distributed file system
+It stores data across multiple machines
+
+Components:-
+NameNode -> Brain (Metadata -> Data about data)
+DataNode -> It stores actual data
+
