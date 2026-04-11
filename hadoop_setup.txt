@@ -1,0 +1,309 @@
+# HADOOP SINGLE NODE SETUP GUIDE (UBUNTU / WSL)
+
+Hadoop Version: 3.2.4
+Java Version: OpenJDK 8
+Environment: Ubuntu 24.04 (WSL / Linux)
+
+---
+
+## PURPOSE
+
+This document provides a complete step-by-step guide to install,
+configure, and verify Apache Hadoop in Single Node (Pseudo-Distributed)
+mode. Every step includes:
+
+1. Command to execute
+2. Expected output
+3. Common errors and solutions
+
+---
+
+## STEP 1: INSTALL JAVA (REQUIRED FOR HADOOP)
+
+Check if Java is installed:
+Command:
+java -version
+
+If Java is NOT installed, install OpenJDK 8:
+Command:
+sudo apt update
+sudo apt install openjdk-8-jdk -y
+
+Verify installation:
+Command:
+java -version
+
+Expected Output:
+openjdk version "1.8.0_xxx"
+
+Common Errors:
+
+* java: command not found
+  Solution: Install Java correctly using apt.
+
+---
+
+## STEP 2: DOWNLOAD AND EXTRACT HADOOP
+
+Download Hadoop:
+Command:
+wget [https://downloads.apache.org/hadoop/common/hadoop-3.2.4/hadoop-3.2.4.tar.gz](https://downloads.apache.org/hadoop/common/hadoop-3.2.4/hadoop-3.2.4.tar.gz)
+
+Extract Hadoop:
+Command:
+tar -xvzf hadoop-3.2.4.tar.gz
+
+Move Hadoop to /usr/local:
+Command:
+sudo mv hadoop-3.2.4 /usr/local/hadoop
+
+---
+
+## STEP 3: SET ENVIRONMENT VARIABLES
+
+Edit ~/.bashrc:
+Command:
+nano ~/.bashrc
+
+Add these lines at the bottom:
+export HADOOP_HOME=/usr/local/hadoop
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+Save and exit (CTRL+O, ENTER, CTRL+X)
+
+Apply changes:
+Command:
+source ~/.bashrc
+
+Verify:
+Command:
+hadoop version
+
+Expected Output:
+Hadoop 3.2.4
+
+---
+
+## STEP 4: CONFIGURE hadoop-env.sh
+
+Open file:
+Command:
+nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+
+Set Java path:
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+Save and exit.
+
+Verify:
+Command:
+echo $JAVA_HOME
+
+---
+
+## STEP 5: CONFIGURE core-site.xml
+
+Overwrite file properly:
+Command:
+cat <<EOF > /usr/local/hadoop/etc/hadoop/core-site.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+</configuration>
+EOF
+
+Common Error:
+Illegal processing instruction target ("xml")
+
+Cause:
+Extra spaces or text before <?xml line
+
+Solution:
+Ensure <?xml is the FIRST line of the file.
+
+---
+
+## STEP 6: CONFIGURE hdfs-site.xml
+
+Command:
+nano /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+
+Paste:
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+
+```
+<property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:/usr/local/hadoop/data/namenode</value>
+</property>
+
+<property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:/usr/local/hadoop/data/datanode</value>
+</property>
+```
+
+</configuration>
+
+---
+
+## STEP 7: CREATE HDFS DIRECTORIES
+
+Command:
+sudo mkdir -p /usr/local/hadoop/data/namenode
+sudo mkdir -p /usr/local/hadoop/data/datanode
+sudo chown -R $USER:$USER /usr/local/hadoop/data
+
+---
+
+## STEP 8: FORMAT NAMENODE (ONE TIME ONLY)
+
+Command:
+hdfs namenode -format
+
+Expected Output:
+Storage directory has been successfully formatted.
+
+IMPORTANT:
+DO NOT run this again after Hadoop is working.
+
+---
+
+## STEP 9: ENABLE PASSWORDLESS SSH
+
+Install SSH:
+Command:
+sudo apt install openssh-server -y
+
+Start SSH:
+Command:
+sudo service ssh start
+
+Generate SSH key:
+Command:
+ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+Copy key:
+Command:
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+Verify:
+Command:
+ssh localhost
+
+If it logs in without password, SSH is ready.
+
+---
+
+## STEP 10: START HADOOP SERVICES
+
+Start HDFS:
+Command:
+start-dfs.sh
+
+Start YARN:
+Command:
+start-yarn.sh
+
+Expected Output:
+Starting namenodes
+Starting datanodes
+Starting resourcemanager
+Starting nodemanagers
+
+Common Error:
+Permission denied (publickey,password)
+
+Solution:
+SSH setup is incorrect. Repeat STEP 9.
+
+---
+
+## STEP 11: VERIFY HADOOP STATUS
+
+Check HDFS:
+Command:
+hdfs dfsadmin -report
+
+Check YARN:
+Command:
+yarn node -list
+
+---
+done by virat
+## STEP 12: BASIC HDFS OPERATIONS
+
+Create directory:
+hdfs dfs -mkdir /input
+
+Create local files:
+echo "Hello Hadoop" > sample.txt
+echo "Hadoop is running fine" > wc.txt
+
+Upload to HDFS:
+hdfs dfs -put sample.txt /input
+hdfs dfs -put wc.txt /input
+
+---
+
+## STEP 13: RUN WORDCOUNT JOB
+
+Command:
+hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.4.jar wordcount /input /output
+
+Expected Output:
+Job completed successfully
+
+---
+
+## STEP 14: VIEW OUTPUT
+
+List output:
+hdfs dfs -ls /output
+
+View result:
+hdfs dfs -cat /output/part-r-00000
+
+Expected Output:
+Hadoop  2
+Hello   1
+fine    1
+is      1
+running 1
+
+---
+
+## STEP 15: STOP HADOOP (OPTIONAL)
+
+Command:
+stop-yarn.sh
+stop-dfs.sh
+
+---
+
+## IMPORTANT NOTES
+
+1. Do not format Namenode again after setup.
+2. If Hadoop says "already running", services are active.
+3. Always start SSH before Hadoop.
+4. Use start-dfs.sh and start-yarn.sh only once.
+
+---
+
+## CONCLUSION
+
+Hadoop Single Node setup is complete and verified successfully.
+You can now use Hadoop for academic labs, demos, and practice.
