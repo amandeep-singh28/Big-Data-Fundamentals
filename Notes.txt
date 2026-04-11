@@ -123,3 +123,11 @@ DIR_COUNT, FILE_COUNT, CONTENT_SIZE PATH
 -%y: Modification Time
 
 -hdfs dfs -stat %n /university/students/info.txt
+
+(xviii)Group Permission(chmod)
+-Change mode(permissions) of a file or a directory
+-User:Group:Others (7:5:5)
+-4:Read(r), 2:Write(w), 1:Execute
+
+-hdfs dfs -chmod 755 /university/students/info.txt
+
