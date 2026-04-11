@@ -111,3 +111,15 @@ Deletes everything inside + directory
 (xv)Tail command(View last few lines)
 -hdfs dfs -tail /university/students/info.txt
 
+(xvi)Count files and directories
+-hdfs dfs -count /university
+DIR_COUNT, FILE_COUNT, CONTENT_SIZE PATH
+
+(xvii)Stat command(Shows specific info about file)
+-%n: File Name
+-%b: File size (bytes)
+-%o: Block size
+-%r: Replication Factor (number of copies of a file block stored across DataNodes)
+-%y: Modification Time
+
+-hdfs dfs -stat %n /university/students/info.txt
