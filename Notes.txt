@@ -77,3 +77,30 @@ cp = duplicate
 -hdfs dfs -mv /university/students/info.txt /university/data
 
 mv = cut + paste
+
+(x)Check Disk Usage (du)
+-hdfs dfs -du /university
+
+It shows size of files inside directory
+Output -> File size + Path
+
+(xi)Download File from HDFS (get command)
+-hdfs dfs -get /university/data/info.txt .
+
+. -> Means current directory
+
+(xii)Delete File (rm)
+-hdfs dfs -rm /university/data/info.txt
+
+Deletes only file, Directory remains
+
+(xiii)Delete Directory
+-Case 1: Empty Directory
+
+hdfs dfs -rmdir /university/faculty
+
+-Case 2: Non-Empty Directory
+
+hdfs dfs -rm -r /university/data
+
+Deletes everything inside + directory
