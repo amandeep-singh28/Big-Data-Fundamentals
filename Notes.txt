@@ -1,0 +1,9 @@
+****What Hadoop is??****
+Big data = very large data (TBs, PBs)
+Normal System store it in a single machine
+But Hadoop store it in distributed way(Many machines)
+
+For example:-
+1 CPU -> Slow
+3 CPUs -> Split work and can work fast
+
