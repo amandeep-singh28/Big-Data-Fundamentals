@@ -161,4 +161,7 @@ They will differ, if the path is not a directory
 -hdfs dfs -test -d /university/students/info.txt (Path is file -> It will return 1)
 -hdfs dfs -test -e /university/students/info.txt (Return false)
 
+(xxiii)Verify File integrity(checksum)
+-hdfs dfs -checksum /university/students/info.txt
 
+Gives hash/checksum
