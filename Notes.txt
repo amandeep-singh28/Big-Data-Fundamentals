@@ -113,7 +113,9 @@ Deletes everything inside + directory
 -hdfs dfs -count /university
 DIR_COUNT, FILE_COUNT, CONTENT_SIZE PATH
 
-(xvii)Stat command(Shows specific info about file)
+(xvii)Stat command(Shows specific info about a path)
+**It works with directories also (For directories, it shows only name and Modification time, rest everything zero)
+
 -%n: File Name
 -%b: File size (bytes)
 -%o: Block size
