@@ -72,6 +72,9 @@ Using put command you can upload files from local system to HDFS
 cp = duplicate
 
 (ix)Move File in HDFS (It moves file form one location to another, File is removed from the source)
+**It is used for renaming a file also
+(-hdfs dfs -mv /temp/temp.txt /temp/temp1.txt) -> File name changed to temp1.txt
+
 -hdfs dfs -mv /university/students/info.txt /university/data
 
 mv = cut + paste
