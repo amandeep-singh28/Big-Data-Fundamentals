@@ -169,6 +169,13 @@ They will differ, if the path is not a directory
 
 Gives hash/checksum
 
+(xxiv)HDFS storage space (df command)
+It tells about the storage space in HDFS
+-df ->	total filesystem space
+-du ->	size of specific file/folder
+
+-hdfs dfs -df /
+-hdfs dfs -df -h / (Gives in Human Readable format)
 
 
 ****Understanding Java Code****
