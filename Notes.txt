@@ -192,3 +192,9 @@ InputValue -> Actual data from the file (Text)
 OutputKey -> If output key will be in NUMERIC FORM use IntWritable else Text
 OutputValue -> Same for this
 
+Reducer Class
+
+public static class Reducer
+    extends Reducer<Text, IntWritable, Text, IntWritable> // <Input Key, Input Value, Output Key, Output Value>
+
+Last two parameters of the Mapper class will be same for the first two parameters of the Reducer class
