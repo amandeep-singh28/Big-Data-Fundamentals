@@ -48,7 +48,10 @@ Without -p → parent must already exist
 With -p → Hadoop will create parent also
 
 
-(v)Uploading file to HDFS(put command)
+(v)Uploading file to HDFS(put command / copyFromLocal)
+-We can also use copyFromLocal(Local File -> HDFS)
+-cp command(HDFS -> HDFS / LOCAL -> LOCAL)
+
 Firstly we need to create a file in our local system.
 -touch info.txt
 -echo "Name:Amandeep Singh, Course:BTech, Subject:Hadoop" > info.txt
