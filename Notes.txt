@@ -177,3 +177,18 @@ Takes mapper output → combines it → final result
 (iii)Driver(Main)
 Connects everything (Mapper + Reducer + Input + Output)
 
+
+Firstly lets understand about the Mapper Class
+
+public static class TokenizerMapper
+    extends Mapper<Object, Text, Text, IntWritable> // <Input Key, Input Value, Output Key, Output Value>
+
+In this we tell what type of data will come IN and what type of data will go Out
+
+
+InputKey -> It represents the line number or byte offset(Use OBJECT in InputKey everytime)
+InputValue -> Actual data from the file (Text)
+
+OutputKey -> If output key will be in NUMERIC FORM use IntWritable else Text
+OutputValue -> Same for this
+
