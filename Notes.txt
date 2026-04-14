@@ -42,12 +42,10 @@ hdfs dfs -mkdir /university
 
 (iv)How to create multiple directories using single command
 hdfs dfs -mkdir -p /university/students /university/faculty /university/data
--p -> ensures parent directory must exist
+-p -> It ensures that if in case university directory didn't exist than it will first create the university directory and than its sub-directories
 
-But if we use this command:-
-hdfs dfs -mkdir /university1/data /university2 (Notes- Both directories are not in HDFS)
-/university1/data -> It will not created
-But /university2 -> It will be created
+Without -p → parent must already exist
+With -p → Hadoop will create parent also
 
 
 (v)Uploading file to HDFS(put command)
@@ -198,3 +196,4 @@ public static class Reducer
     extends Reducer<Text, IntWritable, Text, IntWritable> // <Input Key, Input Value, Output Key, Output Value>
 
 Last two parameters of the Mapper class will be same for the first two parameters of the Reducer class
+
