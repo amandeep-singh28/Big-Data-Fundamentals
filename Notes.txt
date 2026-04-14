@@ -177,6 +177,10 @@ It tells about the storage space in HDFS
 -hdfs dfs -df /
 -hdfs dfs -df -h / (Gives in Human Readable format)
 
+(xxv)Append data to HDFS file (Local file to HDFS file)
+-appendToFile
+
+-hdfs dfs -appendToFile localFile.txt /temp/temp.txt (Data will be appended at the EOF)
 
 ****Understanding Java Code****
 Hadoop always works in 3 parts:-
