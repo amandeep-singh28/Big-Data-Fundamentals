@@ -294,3 +294,23 @@ Why is Hive not suitable for real-time systems?
 Difference between OLTP and OLAP?
 Does Hive store data itself?
 Where is Hive data actually stored?
+
+****Commands of HIVE****
+
+- Delete database (If its empty)
+DROP DATABASE college;
+
+- Delete database (If not empty)
+DROP DATABASE college CASCADE;
+
+- Check current database
+SELECT current_database();
+
+- Hive stores data in this path
+hdfs dfs -ls /user/hive/warehouse/
+
+-> Important thing
+Database -> contains tables
+Table -> contains metadata + data location
+Actual data -> stored in HDFS
+
