@@ -332,3 +332,37 @@ INSERT INTO student VALUES (1, "Amandeep", 22), (2, "Nashit", 21), (3, "Ramu", 1
 - View the data
 SELECT * FROM student;
 
+->Loading CSV Files into HIVE
+CSV files delimitter is ','. So, by default HIVE don't know how data is separated. We need to tell him:-
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ','
+
+- STEPS:-
+(i)Create a file using 'nano'
+nano student.csv
+
+(ii)Inside it store this data
+1,Aman,21
+2,Riya,22
+3,Karan,20
+4,Simran,23
+
+(iii)Create the structure using 'CREATE' command in Hive and also specify the 'ROW DELIMITED' thing.
+CREATE TABLE student_csv(id INT, name STRING, age INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+(iv)Load the data from the .csv file into the table.
+LOAD DATA LOCAL INPATH 'random.csv' INTO TABLE student_csv;
+
+LOCAL means:
+File currently exists in:
+    local Linux filesystem
+NOT HDFS.
+
+Hive copies it into:
+- HDFS warehouse directory
+
+What Happens Internally?
+Hive:
+    takes local file
+    copies into HDFS
+    associates file with table
