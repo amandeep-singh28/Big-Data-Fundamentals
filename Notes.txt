@@ -227,3 +227,40 @@ Find total salary department-wise?
 For this simple task they have to write a lot of Java code.
 
 So to solve this problem "HIVE" was created.
+
+->Definition
+It is Data warehouse software built on top of Hadoop used for storing, managing, and analyzing big data using SQL-like queries.
+
+->In Simple terms:-
+HDFS = Storage
+MapReduce = Processing Engine
+Hive = SQL Layer over Hadoop
+
+->Internal flow of HIVE
+When we write queries:
+    Select * from employee;
+Hive internally converts it into:
+    MapReduce job
+        OR
+    Tez job
+        OR
+    Spark job
+Then Hadoop executes it.
+
+->Does HIVE store data??
+No.
+The real data is stored inside HDFS.
+It manages:-
+(i)Metadata (Data about data)
+(ii)Provide SQL like interface
+(iii)Converts Queries into Processing Jobs
+
+->What makes HIVE popular?
+(i)SQL-like language (HiveQL)
+(ii)Schema on Read
+In SQL databases, first we create the table structure and then store the data, so schema is applied during writing (Schema on Write).
+But in Hive, data is already stored in HDFS. When we create a Hive table and read the data, Hive applies the schema at that time. Therefore Hive follows Schema on Read.
+(iii)Scalability
+Hive handles huge datasets
+(iv)Distributed processing
+
