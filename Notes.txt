@@ -314,3 +314,21 @@ Database -> contains tables
 Table -> contains metadata + data location
 Actual data -> stored in HDFS
 
+- Creating table
+CREATE TABLE student (id INT, name STRING, age INT);
+
+What happened internally??
+(i)Metadata entry
+Table name, column names, datatypes stored
+(ii)HDFS folder
+Hive automatically creates the folder (/user/hive/warehouse/college.db/student)
+
+- Know about table
+DESCRIBE student;
+
+- Inserting the data into 'student' table
+INSERT INTO student VALUES (1, "Amandeep", 22), (2, "Nashit", 21), (3, "Ramu", 15), (4, "Bunty", 19), (5, "Baigan", 1);
+
+- View the data
+SELECT * FROM student;
+
