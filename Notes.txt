@@ -216,3 +216,14 @@ public static class Reducer
 
 Last two parameters of the Mapper class will be same for the first two parameters of the Reducer class
 
+
+
+****Introduction to Hive****
+
+->Understanding the problem
+Before Hive existed, Hadoop users had a major problem. If they want to extract the data from the hadoop, they have to write the code with the help of Java MapReduce, create Mapper class, Reducer Class.
+For example:-
+Find total salary department-wise?
+For this simple task they have to write a lot of Java code.
+
+So to solve this problem "HIVE" was created.
