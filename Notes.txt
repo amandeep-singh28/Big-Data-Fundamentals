@@ -264,3 +264,33 @@ But in Hive, data is already stored in HDFS. When we create a Hive table and rea
 Hive handles huge datasets
 (iv)Distributed processing
 
+->Limitations
+(i)Hive is not used for Real-Time systems (High Latency, Processing nature)
+Because when we run a query using Hive, internally it does many things such as:-
+- reads huge data from HDFS
+- converts query into Hadoop jobs
+- sends work to multiple machines
+- processes large files
+- combines results
+
+->Important Points
+(i)Hive is mainly designed for OLAP (Online Analytical Processing):-
+Meaning:
+- analyzing huge data
+- generating reports
+- business intelligence
+
+Not:
+OLTP (Online transaction Processing)
+
+(ii)Hive is not a database like MySQL
+It is a tool which hadoop uses to extract the information like SQL queries. (SQL layer over Hadoop)
+
+->Questions:-
+Why was Hive created?
+Difference between Hive and MapReduce?
+What is Schema on Read?
+Why is Hive not suitable for real-time systems?
+Difference between OLTP and OLAP?
+Does Hive store data itself?
+Where is Hive data actually stored?
