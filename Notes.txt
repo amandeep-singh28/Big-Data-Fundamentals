@@ -443,3 +443,10 @@ You can write True/ TRUE/ true in any way. It will store it as "true" only.
 
 INSERT INTO student_info VALUES (3, "Raj", 25, 90.0, 16589600.00, true); // WRONG
 INSERT INTO student_info VALUES (4, "Raj", 25, 90.0, 165789.00, true); // CORRECT
+
+
+Example 2:-
+CREATE TABLE student_skills (id INT, name STRING, skills ARRAY<STRING>);
+
+INSERT INTO student_skills VALUES (1, "Amandeep", ARRAY('Java', 'Python', 'ML')), (2, "Raju", ARRAY('C++', 'Full Stack'));
+
