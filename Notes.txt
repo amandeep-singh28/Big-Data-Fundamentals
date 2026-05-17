@@ -492,3 +492,72 @@ hash function
 Why Bucketing:-
 For faster query performance, Efficient joins, Better organization
 
+Now there is also one more thing which is "Partitioning":
+- Bucketing divide the data using a HASH function.
+- But Partitioning divides the data using column values(country = "India', country = "USA")
+
+-> How Hashing Works??
+Hive internally divides the rows using this formula
+hash(id) % number of buckets
+
+-> Example for Partitioning and Bucketing
+
+emp_id	name	department	country
+1	    Aman	IT	        India
+2	    Rahul	HR	        India
+3	    John	IT	        USA
+4	    Alex	Sales	    USA
+5	    Simran	HR	        India
+6	    Bob	    IT	        USA
+
+(i)Partitioning
+Suppose we do Partitioning on country column.
+Hive Physically Creates Separate Folders:-
+    employee_data/
+        country=India/
+        country=USA/
+
+Data Distribution
+country=India
+emp_id	name	department
+1	    Aman	IT
+2	    Rahul	HR
+5	    Simran	HR
+
+country=USA
+emp_id	name	department
+3	    John	IT
+4	    Alex	Sales
+6	    Bob	    IT
+
+Benefits:- Faster performance (If you want to search anything realted to "India", it will search only the country="India" partition -> Query Becomes faster)
+
+(ii)Bucketing
+Now suppose inside each partition we create:
+4 buckets
+using:
+    emp_id
+
+Hive applies a hash function on emp_id column:- emp_id % (number of buckets)\
+
+Data Distribution
+Bucket 0
+Rows where:
+emp_id % 4 = 0
+
+emp_id	name
+4	    Alex
+
+Bucket 1
+emp_id	name
+1	    Aman
+5	    Simran
+
+Bucket 2
+emp_id	name
+2	    Rahul
+6	    Bob
+
+Bucket 3
+emp_id	name
+3	    John
