@@ -532,7 +532,7 @@ emp_id	name	department
 
 Benefits:- Faster performance (If you want to search anything realted to "India", it will search only the country="India" partition -> Query Becomes faster)
 
-Partitioning creates files.
+Partitioning creates folders
 
 (ii)Bucketing
 Now suppose inside each partition we create:
@@ -564,7 +564,7 @@ Bucket 3
 emp_id	name
 3	    John
 
-Bucketing creates directories.
+Bucketing creates files.
 
 ->Practical
 (i)STEP 1
@@ -592,7 +592,7 @@ INSERT INTO employee VALUES
 (5,'Sam','Finance',50000);
 
 (iii)STEP 3
-CREATE TABLE employee_bucketed (id INT, name STRING, department STRING, salary INT) CLUSTERED BY (id) INTO 4 BUCKETS ROW FORMAT DELIMITED FIELD TERMINATED BY ',';
+CREATE TABLE employee_bucketed (id INT, name STRING, department STRING, salary INT) CLUSTERED BY (id) INTO 4 BUCKETS ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
 
 (iv)STEP 4
 Insert the data into 'bucketed_table':
@@ -663,7 +663,7 @@ INSERT INTO employee_static PARTITION(department = 'IT') VALUES (2, 'Bunty', 150
 It does the partitioning on multiple columns (year and month)
 
 (i)STEP 1
-CREATE TABLE sales_multi (
+CREATE TABLE employee_multiple (
     id INT,
     amount INT
 )
