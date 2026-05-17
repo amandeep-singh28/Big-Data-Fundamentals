@@ -402,6 +402,7 @@ TIMESTAMP:	    Date + time
 BOOLEAN:        TRUE or FALSE
 
 - Complex data types
+Store collection/ Nested data
 Hive supports:
 (i)Array
 (ii)Map
@@ -424,3 +425,21 @@ It stores multiple fields together like object/ record
 For example:-
 STRUCT<name : STRING, age : INT>
 {"Amandeep", 21}
+
+ARRAY()
+used for:
+    array values
+
+NAMED_STRUCT()
+used for:
+    struct values
+
+
+Example 1:-
+CREATE TABLE student_info (id INT, name STRING, age TINYINT, marks FLOAT, fees DECIMAL(8,2), passed BOOLEAN);
+
+In this example there is FEES column, So in this there must be total 8 digits but 2 digits must be after decimal.
+You can write True/ TRUE/ true in any way. It will store it as "true" only.
+
+INSERT INTO student_info VALUES (3, "Raj", 25, 90.0, 16589600.00, true); // WRONG
+INSERT INTO student_info VALUES (4, "Raj", 25, 90.0, 165789.00, true); // CORRECT
