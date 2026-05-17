@@ -366,3 +366,61 @@ Hive:
     takes local file
     copies into HDFS
     associates file with table
+
+
+-> Hive Data Types:-
+(i)Primitive data types
+(ii)Complex data types
+
+- Primitive data types
+These store single values
+
+(Numeric Types)
+TINYINT:	    1 byte integer
+SMALLINT:	    2 byte integer
+INT:	        4 byte integer
+BIGINT:	        8 byte integer
+FLOAT:	        Decimal value
+DOUBLE:	        Large decimal precision
+DECIMAL(p,s):	Fixed precision decimal
+
+(String Types)
+STRING:	        Variable-length text
+VARCHAR(n):	    Limited length
+CHAR(n):	    Fixed length
+
+- Difference between String, Varchar() and Char()?
+String is used for unlimited size
+In Varchar() size is limited but it does not add extra spaces internally
+In Char() size is limited but it does add extra spaces internally if the length is not equal to what you have given
+
+(Date/ Time Types)
+DATE:   	    Only date
+TIMESTAMP:	    Date + time
+
+(Boolean Type)
+BOOLEAN:        TRUE or FALSE
+
+- Complex data types
+Hive supports:
+(i)Array
+(ii)Map
+(iii)Struct
+
+- Array
+Multiple values of same data type
+For example:-
+ARRAY<STRING>
+['Java', 'Python', 'SQL']
+
+- Map
+Stores key-value pairs
+For example:-
+MAP<STRING, INT>
+{"Math" : 90, "Science" : 100}
+
+- Struct
+It stores multiple fields together like object/ record
+For example:-
+STRUCT<name : STRING, age : INT>
+{"Amandeep", 21}
