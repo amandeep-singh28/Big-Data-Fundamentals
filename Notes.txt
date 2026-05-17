@@ -561,3 +561,40 @@ emp_id	name
 Bucket 3
 emp_id	name
 3	    John
+
+
+->Practical
+(i)STEP 1
+We have to firstly run this inside HIVE:-
+    SET hive.enforce.bucketing = true;
+    SET mapreduce.job.reduces = 4; // 4 represents number of buckets
+Because HIVE may ignore bucketing rules.
+
+(ii)STEP 2
+Firstly we, need to create a normal table and store some data inside it:
+CREATE TABLE employee (
+    id INT,
+    name STRING,
+    department STRING,
+    salary INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+INSERT INTO employee VALUES
+(1,'John','HR',30000),
+(2,'Alice','IT',40000),
+(3,'Bob','HR',35000),
+(4,'Eve','IT',45000),
+(5,'Sam','Finance',50000);
+
+(iii)STEP 3
+CREATE TABLE employee_bucketed (id INT, name STRING, department STRING, salary INT) CLUSTERED BY (id) INTO 4 BUCKETS ROW FORMAT DELIMITED FIELD TERMINATED BY ',';
+
+(iv)STEP 4
+Insert the data into 'bucketed_table':
+INSERT INTO TABLE employee_bucketed SELECT * FROM employee;
+
+(v)STEP 5
+Check output in the /user/hive/warehouse
+
