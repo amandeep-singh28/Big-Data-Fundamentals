@@ -532,6 +532,8 @@ emp_id	name	department
 
 Benefits:- Faster performance (If you want to search anything realted to "India", it will search only the country="India" partition -> Query Becomes faster)
 
+Partitioning creates files.
+
 (ii)Bucketing
 Now suppose inside each partition we create:
 4 buckets
@@ -562,6 +564,7 @@ Bucket 3
 emp_id	name
 3	    John
 
+Bucketing creates directories.
 
 ->Practical
 (i)STEP 1
@@ -597,4 +600,9 @@ INSERT INTO TABLE employee_bucketed SELECT * FROM employee;
 
 (v)STEP 5
 Check output in the /user/hive/warehouse
+
+(vi)STEP 6
+If you want the results in the form of QUERY use this:-
+SELECT * FROM employee_bucketed
+TABLESAMPLE(BUCKET 1 OUT OF 4 ON id);
 
