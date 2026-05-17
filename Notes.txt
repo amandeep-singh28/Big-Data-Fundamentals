@@ -657,3 +657,25 @@ Insert the data in partition manner
 INSERT INTO employee_static PARTITION(department = 'HR') VALUES (1, 'Amandeep', 30000), (2, 'Raju', 10000);
 
 INSERT INTO employee_static PARTITION(department = 'IT') VALUES (2, 'Bunty', 15000);
+
+
+->Multiple Partitioning
+It does the partitioning on multiple columns (year and month)
+
+(i)STEP 1
+CREATE TABLE sales_multi (
+    id INT,
+    amount INT
+)
+PARTITIONED BY (
+    year INT,
+    month INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+(ii)STEP 2
+INSERT INTO employee_multiple PARTITION(year = 2026, month = 5) VALUES (1, 10000), (2, 20000);
+
+INSERT INTO employee_multiple PARTITION(year = 2025, month = 5) VALUES (3, 100), (4, 5000);
+
