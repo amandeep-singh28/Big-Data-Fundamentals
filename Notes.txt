@@ -466,3 +466,29 @@ CREATE TABLE employee_complete (emp_id INT, emp_name STRING, age TINYINT, salary
 
 INSERT INTO employee_complete VALUES (2, "Amandeep", 21, 19650000.00, true, ARRAY('Excel', 'Power BI', 'ML'), MAP('Maths',10, 'Science', 9), NAMED_STRUCT('city', "Haridwar", 'pincode', 249403));
 
+****Bucketing****
+It is a technique in HIVE where a table data is divided into fixed number of files called buckets.
+
+It works using Hashing.
+
+For exampke:-
+Suppose table has:
+id	name
+1	Aman
+2	Riya
+3	Karan
+4	Simran
+
+Now suppose:- INTO 4 BUCKETS;
+
+Hive will distribute rows into:
+- bucket 1
+- bucket 2
+- bucket 3
+- bucket 4
+using:
+hash function
+
+Why Bucketing:-
+For faster query performance, Efficient joins, Better organization
+
