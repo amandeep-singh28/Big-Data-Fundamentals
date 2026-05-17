@@ -450,3 +450,9 @@ CREATE TABLE student_skills (id INT, name STRING, skills ARRAY<STRING>);
 
 INSERT INTO student_skills VALUES (1, "Amandeep", ARRAY('Java', 'Python', 'ML')), (2, "Raju", ARRAY('C++', 'Full Stack'));
 
+
+Example 3:-
+CREATE TABLE employee_address(id INT, name STRING, address STRUCT<city : STRING, pincode : INT>);
+
+INSERT INTO employee_address VALUES(1, "Amandeep", NAMED_STRUCT("city", "Haridwar", "pincode", 144411));
+
