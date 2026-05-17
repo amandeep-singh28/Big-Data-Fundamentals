@@ -456,3 +456,7 @@ CREATE TABLE employee_address(id INT, name STRING, address STRUCT<city : STRING,
 
 INSERT INTO employee_address VALUES(1, "Amandeep", NAMED_STRUCT("city", "Haridwar", "pincode", 144411));
 
+Example 4:-
+CREATE TABLE student_marks (id INT, name STRING, subject_marks MAP<STRING, INT>);
+
+INSERT INTO student_marks VALUES (1, "Amandeep", MAP("Maths", 100));
