@@ -606,3 +606,34 @@ If you want the results in the form of QUERY use this:-
 SELECT * FROM employee_bucketed
 TABLESAMPLE(BUCKET 1 OUT OF 4 ON id);
 
+->Practical on Dynamic Partitioning
+(i)STEP 1
+    SET hive.exec.dynamic.partition = true;
+    SET hive.exec.dynamic.partition.mode = nonstrict;
+
+(ii)STEP 2
+Same
+
+(iii)STEP 3
+CREATE TABLE employee_partitioned (
+    id INT,
+    name STRING,
+    salary INT
+)
+PARTITIONED BY (department STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+(iv)STEP 4
+INSERT INTO employee_partitioned PARTITION(department) SELECT id, name, salary, department FROM employee;
+
+Note:- Don't use '*' here, it will not create the correct partitioned table.
+
+(v)STEP 5
+Check Data:-
+SELECT * FROM employee_partitioned;
+
+Check partitions:-
+SHOW PARTITIONS employee_partitioned;
+
+
