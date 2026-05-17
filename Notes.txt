@@ -637,3 +637,23 @@ Check partitions:-
 SHOW PARTITIONS employee_partitioned;
 
 
+->Static Partitioning
+In static partitioning:
+user manually specifies partition value
+Hive does NOT create partition automatically from SELECT column values.
+
+(i)STEP 1
+CREATE TABLE employee_static (
+    id INT,
+    name STRING,
+    salary INT
+)
+PARTITIONED BY (department STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+(ii)STEP 2
+Insert the data in partition manner
+INSERT INTO employee_static PARTITION(department = 'HR') VALUES (1, 'Amandeep', 30000), (2, 'Raju', 10000);
+
+INSERT INTO employee_static PARTITION(department = 'IT') VALUES (2, 'Bunty', 15000);
