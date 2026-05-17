@@ -460,3 +460,9 @@ Example 4:-
 CREATE TABLE student_marks (id INT, name STRING, subject_marks MAP<STRING, INT>);
 
 INSERT INTO student_marks VALUES (1, "Amandeep", MAP("Maths", 100));
+
+Example 5(See MAP):-
+CREATE TABLE employee_complete (emp_id INT, emp_name STRING, age TINYINT, salary DECIMAL(10,2), is_active BOOLEAN, skills ARRAY<STRING>, subject_rating MAP<STRING, INT>, address STRUCT<city : STRING, pincode : INT>);
+
+INSERT INTO employee_complete VALUES (2, "Amandeep", 21, 19650000.00, true, ARRAY('Excel', 'Power BI', 'ML'), MAP('Maths',10, 'Science', 9), NAMED_STRUCT('city', "Haridwar", 'pincode', 249403));
+
