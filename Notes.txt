@@ -606,6 +606,13 @@ If you want the results in the form of QUERY use this:-
 SELECT * FROM employee_bucketed
 TABLESAMPLE(BUCKET 1 OUT OF 4 ON id);
 
+
+->Bucketing with Sorting
+We can also sort our buckets by using this:-
+
+CREATE TABLE employee (emp_id INT, name STRING) CLUSTERED BY (emp_id) SORTED BY (emp_id ASC) INTO 5 BUCKETS;
+
+
 ->Practical on Dynamic Partitioning
 (i)STEP 1
     SET hive.exec.dynamic.partition = true;
