@@ -686,3 +686,45 @@ INSERT INTO employee_multiple PARTITION(year = 2026, month = 5) VALUES (1, 10000
 
 INSERT INTO employee_multiple PARTITION(year = 2025, month = 5) VALUES (3, 100), (4, 5000);
 
+
+
+****Introduction to HBase****
+
+Why Hbase??
+Hadoop + HDFS are excellent for:-
+- Storing HUGE data
+- Batch processing
+But they have one limitation:-
+    Slow random read/ write access
+
+For example:-
+You want to fetch only one record instantly. Hadoop MapReduce will takes a lot of time and it is not ideal for this.
+Because Hadoop is batch-processing oriented.
+
+Why HBase Was Created??
+HBase was created to provide:
+real-time read/write access on Hadoop
+This is the biggest reason.
+
+- Definition:-
+Apache HBase is a distributed, scalable, NoSQL database built on top of Hadoop HDFS.
+
+- Simple way:-
+HDFS -> Storage
+Hive -> SQL analytics
+HBase -> Real-time NoSQL database
+
+Hive is best for:-
+Analytics
+Reports
+Batch processing
+SQL-like
+OLAP
+
+HBase is best for:-
+Fast reads/writes
+Real-time access
+Random access
+NoSQL
+OLTP-like access
+
