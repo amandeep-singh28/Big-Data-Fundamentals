@@ -894,7 +894,8 @@ create 'users', 'info', 'contact', 'activity'
 Verify table
 - list
 
-(ii)Put (Insert Data)
+(ii)Put (Insert Data + Update Data)
+(If data already exists than it updates the data)
 put 'users', 'user1001', 'info:name', 'Ravi'
 
 - users = table
@@ -908,4 +909,36 @@ put 'users', 'user1001', 'contact:activity', '2026-05-25'
 
 All data belongs to the same row because same row key = user1001
 
+
+(iii)Get (Fetch One Row)
+- table name & row key
+get 'users', 'user1001'
+
+- Get Specific Column
+get 'users', 'user1001', 'info:age'
+
+(iv)SCAN (Read Full Table)
+scan 'users'
+
+- Difference between GET and SCAN??
+Get -> It fetches only one row (and column) (Uses Row key)
+Scan -> Read all rows of a table
+
+(v)Delete (Delete Specific Column)
+delete 'users', 'user1001', 'info:age'
+
+(vi)DeleteAll (Delete Full Row)
+deleteall 'users', 'user1001'
+
+(vii)Disable Table
+disable 'users'
+
+Why(HBase protects ACTIVE tables)??
+HBase don't allow direct DROP
+First we have to disable the TABLE and then DROP the table
+
+(viii)Drop Table
+drop 'users'
+
+(disable -> drop)
 
