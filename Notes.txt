@@ -749,3 +749,83 @@ HBase stores by columns:
 Why it is better? (Good Performance -> Stores data by columns)
 Suppose we only want "age" of a customer, we will go to only the "age" column. Traditional databases reads the entire rows, even though age is only needed.
 
+-> HBase Architecture:-
+HBase follows:
+    Master-Slave Architecture
+
+Meaning:
+Component	        Role
+HMaster	        Controller
+RegionServer	Worker
+HDFS	        Storage
+
+Client
+   ↓
+HMaster
+   ↓
+RegionServer
+   ↓
+HDFS
+
+(i)HMaster(Manager/ Controller):
+- Table Management(Create, Delete, Schema Changes)
+- Region Assignment (Which RegionServer handles which region)
+- Monitoring (Checks server alive or not)
+
+(ii)RegionServer (Stores and manages actual data)
+Internal Components of RegionServer
+- WAL (Write Ahead Log)
+Before actual write:
+    Data is first stored in WAL
+Why:- If system crashes (Data can be restored)
+
+- MemStore (in-memory write buffer)
+- HFiles
+    Finally data stored permanently as:
+        HFiles in HDFS
+
+(iii)Region (Part of a table) (In HBase tables get automatically splitted)
+- Table split into regions
+- Each region contains row ranges
+- Automatically split
+
+For Example
+
+Suppose table has millions of rows.
+
+HBase splits table into:
+
+Region 1 -> rows A-F
+Region 2 -> rows G-M
+Region 3 -> rows N-Z
+
+Why Regions Needed?
+Because huge table:
+    cannot efficiently stay in one place.
+Regions allow:
+    distribution
+    scalability
+
+- Automatic Splitting
+As data grows:
+    regions automatically split
+This improves:
+    scalability
+    load balancing
+
+(iv)ZooKeeper (Coordinator/ Watcher)
+- coordination service
+- tracks active servers
+- failures
+- leader election
+
+- Leader Election
+Suppose:
+    current HMaster fails
+ZooKeeper helps select:
+    new active master
+
+(v)HDFS (storage layer)
+- stores actual HFiles
+- durability
+- replication
