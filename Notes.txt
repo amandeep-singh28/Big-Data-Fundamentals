@@ -728,3 +728,24 @@ Random access
 NoSQL
 OLTP-like access
 
+
+-> Column - oriented
+Traditional databases store:
+    rows together
+But Hbase stores:
+    columns together
+
+For example:
+Traditional DB:
+id	name	age
+1	Aman	21
+Stored row-wise
+
+HBase stores by columns:
+    id column separately
+    name column separately
+    age column separately
+
+Why it is better? (Good Performance -> Stores data by columns)
+Suppose we only want "age" of a customer, we will go to only the "age" column. Traditional databases reads the entire rows, even though age is only needed.
+
