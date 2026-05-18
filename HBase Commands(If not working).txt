@@ -1,3 +1,5 @@
+/usr/local/hbase/bin/hbase-daemon.sh start zookeeper -> ZooKeeper Start
+
 # STEP 1: Stop HBase
 stop-hbase.sh
 
