@@ -829,3 +829,57 @@ ZooKeeper helps select:
 - stores actual HFiles
 - durability
 - replication
+
+
+-> HBase Data Model
+Traditional databases stores data like:
+id	name	age
+1	Aman	21
+Fixed structure.
+
+HBase Structure is Different
+HBase data model is based on:
+(Table, RowKey, Column Family, Column, Timestamp) → Value
+
+(i)Table
+Same idea as relational DB.
+
+Example:
+users
+students
+employees
+
+A table contains:
+    rows
+    column families
+
+(ii)Row Key
+- unique identifier
+- rows are stored in lexicographical sorting (Dictionary based sorting)
+HBase accesses data mainly using:
+    RowKey
+This is the heart of HBase.
+
+Example
+Suppose:
+RowKey	    name	    age
+user1001	Aman	    21
+
+(iii)Column Family
+Column Family groups related columns together.
+For example:-
+RowKey	personal:name	personal:age	academic:marks	academic:grade
+101	        Aman	        21	            89	            A
+102	        Rahul	        22	            75	            B
+
+Column Family 1: personal which contains "name" and "age"
+Column Family 2: academic which contains "marks" and "grade"
+
+(iv)Column Qualifier
+Specific column name inside Family
+name, age, marks and grade
+
+(v)Cell (Single Value)
+Intersection of row and column
+Each cell also stores TIMESTAMP
+
