@@ -942,3 +942,52 @@ drop 'users'
 
 (disable -> drop)
 
+-> HBase Filters
+Filters are used to retrieve only required rows instead of scanning unnecesaary data
+
+(i)Prefix Filter (Works on Row Key)
+scan 'student', {
+ FILTER => "PrefixFilter('user_')"
+}
+
+Return only rows starting with user_ RowKey
+
+(ii)SingleColumnValue Filter (Works on Column Values)
+
+scan 'student', {
+ FILTER => "SingleColumnValueFilter(
+   'info',
+   'age',
+   =,
+   'binary:20'
+ )"
+}
+
+Fetch rows where:
+Part	        Meaning
+info	    column family
+age	        qualifier
+=	        operator
+binary:20	value
+
+Output -> Only rows where age = 20
+
+Why binary:20 ?
+HBase internally stores values in:
+    byte/binary format
+So comparison uses:
+    binary:value
+
+(iii)Combining Filters (FilterList)
+scan 'student', {
+ FILTER => "FilterList(
+   AND,
+   PrefixFilter('user_'),
+   SingleColumnValueFilter(
+     'info',
+     'age',
+     =,
+     'binary:20'
+   )
+ )"
+}
