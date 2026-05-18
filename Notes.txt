@@ -883,3 +883,29 @@ name, age, marks and grade
 Intersection of row and column
 Each cell also stores TIMESTAMP
 
+-> HBase Shell Commands
+
+(i)Create Table
+
+create 'users', 'info', 'contact', 'activity'
+- users = table name
+- info, contact, activity = column Family
+
+Verify table
+- list
+
+(ii)Put (Insert Data)
+put 'users', 'user1001', 'info:name', 'Ravi'
+
+- users = table
+- user1001 = RowKey
+- info:name = Column Qualifier
+- Ravi = Value (name)
+
+put 'users', 'user1001', 'info:age', '21'
+put 'users', 'user1001', 'contact:email', 'ravi@gmail.com'
+put 'users', 'user1001', 'contact:activity', '2026-05-25'
+
+All data belongs to the same row because same row key = user1001
+
+
