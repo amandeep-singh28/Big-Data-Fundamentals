@@ -1,0 +1,31 @@
+# STEP 1: Stop HBase
+stop-hbase.sh
+
+# STEP 2: Wait a few seconds, then check if processes are gone
+jps
+
+# If HMaster or HRegionServer still show up, kill them:
+# kill -9 <PID>
+
+# STEP 3: Clean up corrupted data
+rm -rf /usr/local/hbase/logs/*
+rm -rf /tmp/hbase-amandeep
+hdfs dfs -rm -r /hbase
+
+# STEP 4: Restart Hadoop
+start-all.sh
+
+# STEP 5: Leave safe mode
+hdfs dfsadmin -safemode leave
+
+# STEP 6: Start HBase fresh
+start-hbase.sh
+
+# STEP 7: Wait 20 seconds, then enter HBase shell
+hbase shell
+
+# STEP 8: Inside HBase shell, create your table
+create 'users', 'info'
+
+# STEP 9: Check if it worked
+status
