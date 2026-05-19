@@ -1006,3 +1006,21 @@ create 'student', {NAME => 'info', TTL => 3600}
 TTL is applied on entire 'info' column family
 
 create 'student', {NAME => 'info', TTL => 3600}, 'contact'
+
+- Important Points
+TTL
+controls:
+    data lifetime
+
+TTL unit is:
+    seconds
+
+TTL applied on:
+    Column Family
+
+Default TTL means:
+    infinite lifetime
+
+create 'student4', {NAME => 'info'}, {NAME => 'contact'} 
+
+
