@@ -395,8 +395,8 @@ In Varchar() size is limited but it does not add extra spaces internally
 In Char() size is limited but it does add extra spaces internally if the length is not equal to what you have given
 
 (Date/ Time Types)
-DATE:   	    Only date
-TIMESTAMP:	    Date + time
+DATE:   	    Only date (yyyy-mm-dd)
+TIMESTAMP:	    Date + time (yyyy-mm-dd hh:mm:ss)
 
 (Boolean Type)
 BOOLEAN:        TRUE or FALSE
