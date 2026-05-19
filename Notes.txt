@@ -991,3 +991,18 @@ scan 'student', {
    )
  )"
 }
+
+-> TTL (Time-To-Live)
+How long data should remain in HBase
+TTL is applied on Column Family level
+
+TTL => 3600
+Data survives for 3600 seconds
+
+- Create Table with TTL
+create 'student', {NAME => 'info', TTL => 3600}
+    NAME is just a keyword
+
+TTL is applied on entire 'info' column family
+
+create 'student', {NAME => 'info', TTL => 3600}, 'contact'
