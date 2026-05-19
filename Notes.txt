@@ -855,7 +855,7 @@ A table contains:
 
 (ii)Row Key
 - unique identifier
-- rows are stored in lexicographical sorting (Dictionary based sorting)
+- rows are stored in lexicographical order (Dictionary based sorting)
 HBase accesses data mainly using:
     RowKey
 This is the heart of HBase.
@@ -900,12 +900,12 @@ put 'users', 'user1001', 'info:name', 'Ravi'
 
 - users = table
 - user1001 = RowKey
-- info:name = Column Qualifier
+- name = Column Qualifier
 - Ravi = Value (name)
 
 put 'users', 'user1001', 'info:age', '21'
 put 'users', 'user1001', 'contact:email', 'ravi@gmail.com'
-put 'users', 'user1001', 'contact:activity', '2026-05-25'
+put 'users', 'user1001', 'activity:last_login', '2026-05-25'
 
 All data belongs to the same row because same row key = user1001
 
