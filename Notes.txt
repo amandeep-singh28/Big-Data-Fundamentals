@@ -896,7 +896,7 @@ Verify table
 
 (ii)Put (Insert Data + Update Data)
 (If data already exists than it updates the data)
-put 'users', 'user1001', 'info:name', 'Ravi'
+put 'users', 'user1001', 'info:name', 'Ravi' (We can insert only one value at a time in HBASE)
 
 - users = table
 - user1001 = RowKey
